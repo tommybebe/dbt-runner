@@ -82,7 +82,7 @@ models:
           - not_null
 
 metrics:
-  - name: qq
+  - name: daily_orders
     label: order count
     model: ref("orders")
     description: "order count"
