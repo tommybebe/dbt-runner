@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run
-        uses: tommybebe/dbt-action@v1.0.0
+        uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt run --profiles-dir ."
           dbt_project_folder: "dbt_project"
