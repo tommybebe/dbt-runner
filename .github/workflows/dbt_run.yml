@@ -13,6 +13,10 @@ jobs:
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "ls"
+      - name: pwd
+        uses: tommybebe/dbt-action@v1.0.1
+        with:
+          dbt_command: "pwd"
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
