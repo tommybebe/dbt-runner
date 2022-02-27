@@ -9,7 +9,11 @@ jobs:
   dbt_run: 
     runs-on: ubuntu-latest
     steps:
+      - name: deps
+        uses: tommybebe/dbt-action@v1.0.1
+        with:
+          dbt_command: "dbt deps"
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
-          dbt_command: "dbt deps && dbt run"
+          dbt_command: "dbt run"
