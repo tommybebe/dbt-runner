@@ -12,7 +12,7 @@ jobs:
       - name: deps
         uses: tommybebe/dbt-action@v1.0.1
         with:
-          dbt_command: "dbt deps"
+          dbt_command: "ls"
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
