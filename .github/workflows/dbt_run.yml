@@ -3,6 +3,7 @@ name: dbt run on push or pull request
 on: [push, pull_request]
 
 env:
+  DBT_PROFILES_DIR: .
   DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
 
 jobs: 
