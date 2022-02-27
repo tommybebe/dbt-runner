@@ -9,14 +9,11 @@ jobs:
   dbt_run: 
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: deps
         uses: tommybebe/dbt-action@v1.0.1
         with:
-          dbt_command: "ls"
-      - name: pwd
-        uses: tommybebe/dbt-action@v1.0.1
-        with:
-          dbt_command: "pwd"
+          dbt_command: "dbt deps"
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
