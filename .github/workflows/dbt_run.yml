@@ -1,0 +1,13 @@
+name: dbt run on push or pull request
+
+on: [push, pull_request]
+
+jobs: 
+  dbt_run: 
+    name: dbt_run
+    uses: mwhitaker/dbt-action@v1.0.0
+    with:
+      dbt_command: "dbt run --profiles-dir ."
+      dbt_project_folder: "dbt_project"
+    env:
+      DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
