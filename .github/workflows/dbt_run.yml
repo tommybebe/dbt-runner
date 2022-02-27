@@ -5,6 +5,8 @@ on: [push, pull_request]
 env:
   DBT_PROFILES_DIR: .
   DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
+  DBT_GOOGLE_PROJECT_DEV: ${{ secrets.DBT_GOOGLE_PROJECT_DEV }}
+  DBT_GOOGLE_BIGQUERY_DATASET_DEV: ${{ secrets.DBT_GOOGLE_BIGQUERY_DATASET_DEV }}
 
 jobs: 
   dbt_run: 
@@ -15,10 +17,6 @@ jobs:
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt deps"
-      - name: test
-        uses: tommybebe/dbt-action@v1.0.1
-        with:
-          dbt_command: "ls"
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
