@@ -2,6 +2,9 @@ name: dbt run on push or pull request
 
 on: [push, pull_request]
 
+env:
+  DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
+
 jobs: 
   dbt_run: 
     runs-on: ubuntu-latest
@@ -9,7 +12,4 @@ jobs:
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
-          dbt_command: "dbt run --profiles-dir ."
-          dbt_project_folder: "dbt_project"
-        env:
-          DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
+          dbt_command: "dbt deps && dbt run"
