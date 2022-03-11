@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Get branch name
         shell: bash
-        run: echo "TARGET_ENV=$(echo ${GITHUB_REF#refs/heads/} | tr / -)"
+        run: echo "TARGET_ENV=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
       - name: deps
         uses: tommybebe/dbt-action@v1.0.1
         with:
