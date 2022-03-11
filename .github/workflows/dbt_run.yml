@@ -17,18 +17,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: get branch name
-        id: git-branch-name
-        uses: EthanSK/git-branch-name-action@v1
+      - name: Get branch name
+        shell: bash
+        run: echo "TARGET_ENV=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
       - name: deps
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt deps"
         env:
-          TARGET_ENV: ${{ GIT_BRANCH_NAME }}
+          TARGET_ENV: ${{ env.TARGET_ENV }}
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt run"
         env:
-          TARGET_ENV: ${{ GIT_BRANCH_NAME }}
+          TARGET_ENV: ${{ env.TARGET_ENV }}
