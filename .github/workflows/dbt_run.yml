@@ -25,10 +25,10 @@ jobs:
         with:
           dbt_command: "dbt deps"
           env:
-            TARGET_ENV: ${{ GIT_BRANCH_NAME }}
+            TARGET_ENV: ${ GIT_BRANCH_NAME }
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt run"
           env:
-            TARGET_ENV: ${{ GIT_BRANCH_NAME }}
+            TARGET_ENV: ${ GIT_BRANCH_NAME }
