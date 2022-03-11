@@ -1,24 +1,35 @@
 name: dbt run on push or pull request
 
-on: [push, pull_request]
+on: 
+  push: 
+    branches: 
+      - main
+      - dev
 
 env:
   DBT_PROFILES_DIR: .
   DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
   DBT_GOOGLE_PROJECT_DEV: ${{ secrets.DBT_GOOGLE_PROJECT_DEV }}
   DBT_GOOGLE_BIGQUERY_DATASET_DEV: ${{ secrets.DBT_GOOGLE_BIGQUERY_DATASET_DEV }}
-  TARGET_ENV: ${{ GITHUB_REF##*/ }}
 
 jobs: 
   dbt_run: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: get branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: env
       - name: deps
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt deps"
+          env:
+            TARGET_ENV: ${{ steps.env.outputs.branch }}
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt run"
+          env:
+            TARGET_ENV: ${{ steps.env.outputs.branch }}
