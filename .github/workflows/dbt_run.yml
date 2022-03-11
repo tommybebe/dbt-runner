@@ -25,7 +25,7 @@ jobs:
         with:
           dbt_command: "dbt deps"
           env:
-            TARGET_ENV: ${GITHUB_REF#refs/heads/}
+            TARGET_ENV: ${{ env.TARGET_ENV }}
       - name: run
         uses: tommybebe/dbt-action@v1.0.1
         with:
