@@ -1,7 +1,7 @@
 dbt_action: # Be sure to change this to your dbt project name
-  target: dev
+  target: "{{ env_var('TARGET_ENV') }}"
   outputs:
-    dev:
+    main:
       type: bigquery
       method: service-account
       keyfile: ./creds.json
