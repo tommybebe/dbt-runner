@@ -19,6 +19,10 @@ jobs:
           dbt_command: "dbt docs generate"
         env:
           TARGET_ENV: ${{ env.TARGET_ENV }}
+          DBT_PROFILES_DIR: .
+          DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
+          DBT_GOOGLE_PROJECT_DEV: ${{ secrets.DBT_GOOGLE_PROJECT_DEV }}
+          DBT_GOOGLE_BIGQUERY_DATASET_DEV: ${{ secrets.DBT_GOOGLE_BIGQUERY_DATASET_DEV }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
