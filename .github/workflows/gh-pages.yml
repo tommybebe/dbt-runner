@@ -5,6 +5,13 @@ on:
     branches:
       - main 
 
+env:
+  TARGET_ENV: main
+  DBT_PROFILES_DIR: .
+  DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
+  DBT_GOOGLE_PROJECT_DEV: ${{ secrets.DBT_GOOGLE_PROJECT_DEV }}
+  DBT_GOOGLE_BIGQUERY_DATASET_DEV: ${{ secrets.DBT_GOOGLE_BIGQUERY_DATASET_DEV }}
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
@@ -13,16 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: deps
+        uses: tommybebe/dbt-action@v1.0.1
+        with:
+          dbt_command: "dbt deps"
+
       - name: docs generate
         uses: tommybebe/dbt-action@v1.0.1
         with:
           dbt_command: "dbt docs generate"
-        env:
-          TARGET_ENV: main
-          DBT_PROFILES_DIR: .
-          DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
-          DBT_GOOGLE_PROJECT_DEV: ${{ secrets.DBT_GOOGLE_PROJECT_DEV }}
-          DBT_GOOGLE_BIGQUERY_DATASET_DEV: ${{ secrets.DBT_GOOGLE_BIGQUERY_DATASET_DEV }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
