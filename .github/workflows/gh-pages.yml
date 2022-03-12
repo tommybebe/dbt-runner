@@ -18,7 +18,7 @@ jobs:
         with:
           dbt_command: "dbt docs generate"
         env:
-          TARGET_ENV: ${{ env.TARGET_ENV }}
+          TARGET_ENV: main
           DBT_PROFILES_DIR: .
           DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
           DBT_GOOGLE_PROJECT_DEV: ${{ secrets.DBT_GOOGLE_PROJECT_DEV }}
