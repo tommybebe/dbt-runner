@@ -8,6 +8,7 @@ authors = ["tommybebe <hansupanda@gmail.com>"]
 python = "^3.8"
 dbt-core = "^1.0.3"
 dbt-bigquery = "^1.0.0"
+PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 

@@ -20,6 +20,10 @@ jobs:
       - name: Get branch name
         shell: bash
         run: echo "TARGET_ENV=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+      - name: pip pakage install 
+        run: pip install pyyaml
+      - name: generate metric models
+        run: python src/metric_generator.py
       - name: deps
         uses: tommybebe/dbt-action@v1.0.1
         with:
