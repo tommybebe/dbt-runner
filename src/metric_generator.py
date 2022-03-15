@@ -1,3 +1,4 @@
+import os
 import yaml
 from string import Template
 from yaml.loader import SafeLoader
@@ -55,9 +56,9 @@ class ModelMaker:
 
 
 if __name__ == "__main__":
-    file_path = "./models/mart/schema.yml"
-    metric_desitination = "./models/metric"
-
+    root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = f"{root_path}/models/mart/schema.yml"
+    metric_desitination = f"{root_path}/models/metric"
     configs = yaml_to_dict(file_path)
 
     for config in configs: 
