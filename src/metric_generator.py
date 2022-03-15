@@ -55,10 +55,17 @@ class ModelMaker:
             self.__make_model(grain)
 
 
+def ensure_dir(dir_path):
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+
+
 if __name__ == "__main__":
     root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     file_path = f"{root_path}/models/mart/schema.yml"
     metric_desitination = f"{root_path}/models/metric"
+    ensure_dir(metric_desitination)
+
     configs = yaml_to_dict(file_path)
 
     for config in configs: 
